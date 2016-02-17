@@ -612,11 +612,11 @@ int id action_menu_presenter 0x7f0d0003
 int id action_mode_bar 0x7f0d0057
 int id action_mode_bar_stub 0x7f0d0056
 int id action_mode_close_button 0x7f0d003c
-int id action_up 0x7f0d006b
 int id activity_chooser_view_content 0x7f0d003d
 int id alertTitle 0x7f0d0049
 int id always 0x7f0d0032
 int id app_bar_layout 0x7f0d006d
+int id app_bar_layout_detail 0x7f0d0069
 int id article_body 0x7f0d0080
 int id article_byline 0x7f0d007f
 int id article_subtitle 0x7f0d0083
@@ -679,7 +679,7 @@ int id navigation_header_container 0x7f0d0074
 int id never 0x7f0d0035
 int id none 0x7f0d0010
 int id normal 0x7f0d000c
-int id pager 0x7f0d0069
+int id pager 0x7f0d006b
 int id parallax 0x7f0d001a
 int id parentPanel 0x7f0d0046
 int id photo 0x7f0d007c
@@ -735,10 +735,10 @@ int id time 0x7f0d008a
 int id title 0x7f0d0043
 int id title_template 0x7f0d0048
 int id toolbar 0x7f0d006f
+int id toolbar_detail 0x7f0d006a
 int id top 0x7f0d0025
 int id topPanel 0x7f0d0047
 int id up 0x7f0d0009
-int id up_container 0x7f0d006a
 int id useLogo 0x7f0d0014
 int id view_offset_helper 0x7f0d000a
 int id withText 0x7f0d0036

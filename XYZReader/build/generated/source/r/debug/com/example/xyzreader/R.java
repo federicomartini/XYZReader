@@ -2359,11 +2359,11 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0d0057;
         public static final int action_mode_bar_stub=0x7f0d0056;
         public static final int action_mode_close_button=0x7f0d003c;
-        public static final int action_up=0x7f0d006b;
         public static final int activity_chooser_view_content=0x7f0d003d;
         public static final int alertTitle=0x7f0d0049;
         public static final int always=0x7f0d0032;
         public static final int app_bar_layout=0x7f0d006d;
+        public static final int app_bar_layout_detail=0x7f0d0069;
         public static final int article_body=0x7f0d0080;
         public static final int article_byline=0x7f0d007f;
         public static final int article_subtitle=0x7f0d0083;
@@ -2426,7 +2426,7 @@ containing a value of this type.
         public static final int never=0x7f0d0035;
         public static final int none=0x7f0d0010;
         public static final int normal=0x7f0d000c;
-        public static final int pager=0x7f0d0069;
+        public static final int pager=0x7f0d006b;
         public static final int parallax=0x7f0d001a;
         public static final int parentPanel=0x7f0d0046;
         public static final int photo=0x7f0d007c;
@@ -2482,10 +2482,10 @@ containing a value of this type.
         public static final int title=0x7f0d0043;
         public static final int title_template=0x7f0d0048;
         public static final int toolbar=0x7f0d006f;
+        public static final int toolbar_detail=0x7f0d006a;
         public static final int top=0x7f0d0025;
         public static final int topPanel=0x7f0d0047;
         public static final int up=0x7f0d0009;
-        public static final int up_container=0x7f0d006a;
         public static final int useLogo=0x7f0d0014;
         public static final int view_offset_helper=0x7f0d000a;
         public static final int withText=0x7f0d0036;
