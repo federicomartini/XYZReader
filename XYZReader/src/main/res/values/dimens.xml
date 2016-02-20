@@ -8,4 +8,7 @@
     <dimen name="fab_press_translation_z">12dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <dimen name="main_card_title_text_size">16sp</dimen>
+    <dimen name="main_card_subtitle_text_size">14sp</dimen>
+
 </resources>

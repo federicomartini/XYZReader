@@ -16,13 +16,14 @@
             android:id="@+id/collapsing_toolbar_layout_fragment_article_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:expandedTitleMarginEnd="48dp"
+            app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             android:minHeight="?actionBarSize"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <com.example.xyzreader.ui.ThreeTwoImageView
                 android:id="@+id/square_image_view_fragment_article_detail"
+                android:transitionName="@string/transition_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -34,6 +35,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:gravity="bottom"
+                android:transitionName="@string/transition_text"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/detail_inner_horiz_margin"
                 android:paddingRight="@dimen/detail_inner_horiz_margin"
@@ -71,10 +73,9 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_article_detail_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:minHeight="?actionBarSize"
+                android:layout_height="?actionBarSize"
+                android:layout_marginLeft="48dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginRight="@dimen/detail_inner_horiz_margin"
                 android:layout_marginEnd="@dimen/detail_inner_horiz_margin"
                 app:layout_collapseMode="pin"
@@ -133,6 +134,7 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/share_fab"
         app:fabSize="normal"
+        app:backgroundTint="@color/theme_accent"
         app:elevation="@dimen/fab_elevation"
         app:pressedTranslationZ="@dimen/fab_press_translation_z"
         android:layout_gravity="bottom|end"

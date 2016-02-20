@@ -10,7 +10,9 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.ActionBarActivity;
@@ -39,9 +41,10 @@ import com.example.xyzreader.data.ArticleLoader;
  */
 public class ArticleDetailFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String TAG = "ArticleDetailFragment";
+    private static final String LOG_TAG = "ArticleDetailFragment";
 
     public static final String ARG_ITEM_ID = "item_id";
+    private static final String ARG_POSITION = "transition_string_position";
     private static final float PARALLAX_FACTOR = 1.25f;
 
     private Cursor mCursor;
@@ -59,6 +62,7 @@ public class ArticleDetailFragment extends Fragment implements
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
+    private int mPosition;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -67,9 +71,10 @@ public class ArticleDetailFragment extends Fragment implements
     public ArticleDetailFragment() {
     }
 
-    public static ArticleDetailFragment newInstance(long itemId) {
+    public static ArticleDetailFragment newInstance(long itemId, int position) {
         Bundle arguments = new Bundle();
         arguments.putLong(ARG_ITEM_ID, itemId);
+        arguments.putInt(ARG_POSITION, position);
         ArticleDetailFragment fragment = new ArticleDetailFragment();
         fragment.setArguments(arguments);
         return fragment;
@@ -81,6 +86,9 @@ public class ArticleDetailFragment extends Fragment implements
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             mItemId = getArguments().getLong(ARG_ITEM_ID);
+        }
+        if (getArguments().containsKey(ARG_POSITION)) {
+            mPosition = getArguments().getInt(ARG_POSITION);
         }
 
         mIsCard = getResources().getBoolean(R.bool.detail_is_card);
@@ -108,6 +116,13 @@ public class ArticleDetailFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
+        mPhotoView = (ThreeTwoImageView) mRootView.findViewById(R.id.square_image_view_fragment_article_detail);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mPhotoView.setTransitionName(getString(R.string.transition_image) + String.valueOf(mPosition));
+            Log.v(LOG_TAG, "in detail fragment onCreateView: " + mPhotoView.getTransitionName());
+        }
+
 //        mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
 //                mRootView.findViewById(R.id.draw_insets_frame_layout);
 //        mDrawInsetsFrameLayout.setOnInsetsCallback(new DrawInsetsFrameLayout.OnInsetsCallback() {
@@ -127,7 +142,7 @@ public class ArticleDetailFragment extends Fragment implements
 //            }
 //        });
 
-        mPhotoView = (ThreeTwoImageView) mRootView.findViewById(R.id.square_image_view_fragment_article_detail);
+
 //        mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
         mStatusBarColorDrawable = new ColorDrawable(0);
@@ -214,6 +229,25 @@ public class ArticleDetailFragment extends Fragment implements
                                 mPhotoView.setImageBitmap(imageContainer.getBitmap());
 //                                mRootView.findViewById(R.id.meta_bar)
 //                                        .setBackgroundColor(mMutedColor);
+                                final CollapsingToolbarLayout collapsingToolbar =
+                                        (CollapsingToolbarLayout) mRootView
+                                                .findViewById(R.id.collapsing_toolbar_layout_fragment_article_detail);
+                                collapsingToolbar.setContentScrimColor(mMutedColor);
+                                AppBarLayout appBarLayout = (AppBarLayout) mRootView.findViewById(R.id.app_bar_layout_fragment_article_detail);
+                                appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+                                    @Override
+                                    public void onOffsetChanged(AppBarLayout appBarLayout1, int verticalOffset) {
+//                                       collapsingToolbar.setContentScrimColor(mMutedColor);
+                                        if (verticalOffset <= -300) {
+                                            collapsingToolbar.setTitle(mCursor.getString(ArticleLoader
+                                                    .Query.TITLE));
+                                        } else {
+                                            collapsingToolbar.setTitle(null);
+                                        }
+
+                                    }
+                                });
+
                                 updateStatusBar();
                             }
                         }
@@ -238,6 +272,9 @@ public class ArticleDetailFragment extends Fragment implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+
+        ((ArticleDetailActivity)getActivity()).scheduleStartPostponedTransition(mPhotoView);
+
         if (!isAdded()) {
             if (cursor != null) {
                 cursor.close();
@@ -247,7 +284,7 @@ public class ArticleDetailFragment extends Fragment implements
 
         mCursor = cursor;
         if (mCursor != null && !mCursor.moveToFirst()) {
-            Log.e(TAG, "Error reading item detail cursor");
+            Log.e(LOG_TAG, "Error reading item detail cursor");
             mCursor.close();
             mCursor = null;
         }

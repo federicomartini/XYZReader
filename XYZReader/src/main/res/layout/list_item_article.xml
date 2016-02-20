@@ -1,6 +1,8 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:style="http://schemas.android.com/tools"
+    android:id="@+id/card_view_list_item_article"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="4dp"
@@ -23,17 +25,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/photo_placeholder"
+            android:transitionName="@string/transition_image"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:transitionName="@string/transition_text"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/article_title"
-                style="@style/TextAppearance.AppCompat.Subhead"
+                style="@style/MainCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
@@ -50,7 +54,7 @@
 
             <TextView
                 android:id="@+id/article_subtitle"
-                style="@style/TextAppearance.AppCompat.Body1"
+                style="@style/MainCardSubtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
