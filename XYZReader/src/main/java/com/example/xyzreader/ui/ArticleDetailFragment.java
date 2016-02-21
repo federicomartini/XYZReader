@@ -123,28 +123,6 @@ public class ArticleDetailFragment extends Fragment implements
             Log.v(LOG_TAG, "in detail fragment onCreateView: " + mPhotoView.getTransitionName());
         }
 
-//        mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
-//                mRootView.findViewById(R.id.draw_insets_frame_layout);
-//        mDrawInsetsFrameLayout.setOnInsetsCallback(new DrawInsetsFrameLayout.OnInsetsCallback() {
-//            @Override
-//            public void onInsetsChanged(Rect insets) {
-//                mTopInset = insets.top;
-//            }
-//        });
-//
-//        mScrollView = (ObservableScrollView) mRootView.findViewById(R.id.scrollview);
-//        mScrollView.setCallbacks(new ObservableScrollView.Callbacks() {
-//            @Override
-//            public void onScrollChanged() {
-//                mScrollY = mScrollView.getScrollY();
-//                mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
-//                updateStatusBar();
-//            }
-//        });
-
-
-//        mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
-
         mStatusBarColorDrawable = new ColorDrawable(0);
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_toolbar_layout_fragment_article_detail);
         mCollapsingToolbarLayout.setTitle("");
@@ -176,7 +154,6 @@ public class ArticleDetailFragment extends Fragment implements
                     (int) (Color.blue(mMutedColor) * 0.9));
         }
         mStatusBarColorDrawable.setColor(color);
-//        mDrawInsetsFrameLayout.setInsetBackground(mStatusBarColorDrawable);
     }
 
     static float progress(float v, float min, float max) {
@@ -199,12 +176,9 @@ public class ArticleDetailFragment extends Fragment implements
         }
 
         TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
-        //titleView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Roboto-Black.ttf"));
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
-        //bylineView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Roboto-Regular.ttf"));
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        //bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Roboto-Regular.ttf"));
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
@@ -220,6 +194,7 @@ public class ArticleDetailFragment extends Fragment implements
                             + mCursor.getString(ArticleLoader.Query.AUTHOR)
                             + "</font>"));
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
+
             ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
                     .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
                         @Override
@@ -227,10 +202,8 @@ public class ArticleDetailFragment extends Fragment implements
                             Bitmap bitmap = imageContainer.getBitmap();
                             if (bitmap != null) {
                                 Palette p = Palette.generate(bitmap, 12);
-                                mMutedColor = p.getDarkMutedColor(0xFF333333);
+                                mMutedColor = p.getDarkMutedColor(getResources().getColor(R.color.color_primary));
                                 mPhotoView.setImageBitmap(imageContainer.getBitmap());
-//                                mRootView.findViewById(R.id.meta_bar)
-//                                        .setBackgroundColor(mMutedColor);
                                 final CollapsingToolbarLayout collapsingToolbar =
                                         (CollapsingToolbarLayout) mRootView
                                                 .findViewById(R.id.collapsing_toolbar_layout_fragment_article_detail);
@@ -238,9 +211,9 @@ public class ArticleDetailFragment extends Fragment implements
                                 AppBarLayout appBarLayout = (AppBarLayout) mRootView.findViewById(R.id.app_bar_layout_fragment_article_detail);
                                 appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
                                     @Override
-                                    public void onOffsetChanged(AppBarLayout appBarLayout1, int verticalOffset) {
-//                                       collapsingToolbar.setContentScrimColor(mMutedColor);
-                                        if (verticalOffset <= -300) {
+                                    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                                        verticalOffset = Math.abs(verticalOffset);
+                                        if (verticalOffset >= appBarLayout.getTotalScrollRange()) {
                                             collapsingToolbar.setTitle(mCursor.getString(ArticleLoader
                                                     .Query.TITLE));
                                         } else {

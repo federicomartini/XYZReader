@@ -76,4 +76,8 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="CardLayoutTextStyle">
+        <item name="android:gravity">bottom</item>
+    </style>
+
 </resources>
