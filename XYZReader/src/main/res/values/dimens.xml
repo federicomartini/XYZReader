@@ -8,7 +8,41 @@
     <dimen name="fab_press_translation_z">12dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <dimen name="collapsing_toolbar_fragment_expanded_title_margin_end">64dp</dimen>
+    <dimen name="collapsing_toolbar_fragment_expanded_title_margin_start">48dp</dimen>
+
+    <dimen name="collapsing_toolbar_layout_expanded_title_margin_start">16dp</dimen>
+
+    <dimen name="app_bar_layout_height">168dp</dimen>
+    <dimen name="app_bar_layout_elevation">4dp</dimen>
+
+    <dimen name="recycler_view_padding_bottom">28dp</dimen>
+
+    <dimen name="action_up_layout_width">56dp</dimen>
+
+    <dimen name="article_list_image_view_padding_left">16dp</dimen>
+    <dimen name="article_list_image_view_padding_right">16dp</dimen>
+    <dimen name="article_list_image_view_padding_top">16dp</dimen>
+    <dimen name="article_list_image_view_padding_bottom">0dp</dimen>
+    <dimen name="article_list_image_view_margin_bottom">0dp</dimen>
+
     <dimen name="main_card_title_text_size">16sp</dimen>
     <dimen name="main_card_subtitle_text_size">12sp</dimen>
+
+    <dimen name="card_view_list_item_article_layout_margin_left">4dp</dimen>
+    <dimen name="card_view_list_item_article_layout_margin_right">4dp</dimen>
+    <dimen name="card_view_list_item_article_layout_margin_top">4dp</dimen>
+    <dimen name="card_view_list_item_article_layout_margin_bottom">4dp</dimen>
+
+    <dimen name="article_title_padding_left">16dp</dimen>
+    <dimen name="article_title_padding_top">16dp</dimen>
+    <dimen name="article_title_padding_right">16dp</dimen>
+    <dimen name="article_title_padding_bottom">8dp</dimen>
+    <integer name="article_title_shadow_dx">5</integer>
+    <integer name="article_title_shadow_dy">5</integer>
+    <integer name="article_title_shadow_radius">20</integer>
+    <integer name="article_title_max_lines">2</integer>
+
+    <dimen name="detail_card_elevation">2dp</dimen>
 
 </resources>

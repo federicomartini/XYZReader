@@ -36,12 +36,14 @@
 
     <style name="CardTitle">
         <item name="android:textColor">@color/dark_background_primary_text_color</item>
+        <item name="android:shadowColor">@color/card_title_shadow_color</item>
         <item name="android:textSize">@dimen/main_card_title_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="CardSubtitle">
         <item name="android:textColor">@color/dark_background_secondary_text_color</item>
+        <item name="android:shadowColor">@color/card_title_shadow_color</item>
         <item name="android:textSize">@dimen/main_card_subtitle_text_size</item>
         <item name="android:textStyle">normal</item>
     </style>
@@ -62,11 +64,16 @@
     </style>
 
     <style name="ArticleTitle">
+        <item name="android:shadowColor">@color/card_title_shadow_color</item>
+        <item name="android:textColor">@color/dark_background_primary_text_color</item>
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/detail_title_text_size</item>
     </style>
 
     <style name="ArticleByLine">
+        <item name="android:shadowColor">@color/card_title_shadow_color</item>
+        <item name="android:textColor">@color/dark_background_primary_text_color</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
         <item name="android:textStyle">normal</item>
     </style>
